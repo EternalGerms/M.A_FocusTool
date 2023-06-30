@@ -6,6 +6,9 @@ const setT = document.querySelector('#set')
 const minutesDisplay = document.querySelector('.minutes')
 const hoursDisplay = document.querySelector('.hours')
 const secondsDisplay = document.querySelector('.seconds')
+const audio = new Audio("/images/alarm.mp3");
+const alarm = document.querySelector('#alarm')
+const alarmI = document.querySelector('.mute');
 stopT.style.display = 'none'
 set.style.display = 'block'
 pause.style.display = 'none'
@@ -14,6 +17,20 @@ let timerTimeOut
 let seconds = 0
 let minutes = 0
 let hours = 0
+
+alarmI.addEventListener('click', function() {
+    alarm.classList.toggle('fa-volume-xmark')
+})
+
+function HasSound() {
+    if (alarm.classList.contains('fa-volume-xmark')) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
 
 function convertTime() {
     if (seconds >= 60) {
@@ -56,8 +73,14 @@ function timer() {
         hours = Number(hoursDisplay.textContent)
         
         if (seconds == 0 && minutes == 0 && hours == 0) {
+            if (HasSound()) {
+                audio.play();
+            }
+            console.log(HasSound())
             resetControls();
             return;
+            
+            
         }
         if (seconds === 0 && minutes !== 0) {
             minutes--;
@@ -81,6 +104,7 @@ function timer() {
 }
 
 play.addEventListener('click', function() {
+    console.log(HasSound())
     play.style.display = 'none'
     pause.style.display = 'block'
     set.style.display = 'none'
@@ -88,6 +112,7 @@ play.addEventListener('click', function() {
     timer()
 })
 pause.addEventListener('click', function() {
+    console.log(HasSound())
     pause.style.display = 'none'
     play.style.display = 'block'
     clearTimeout(timerTimeOut)
@@ -106,3 +131,4 @@ setT.addEventListener('click', function() {
     formatText()
 
 })
+
