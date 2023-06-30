@@ -2,6 +2,7 @@ const play = document.querySelector('.play')
 const pause = document.querySelector('.pause')
 const stopT = document.querySelector('.stop')
 const set = document.querySelector('.set')
+const setT = document.querySelector('#set')
 const minutesDisplay = document.querySelector('.minutes')
 const hoursDisplay = document.querySelector('.hours')
 const secondsDisplay = document.querySelector('.seconds')
@@ -97,8 +98,10 @@ stopT.addEventListener('click', function() {
     resetTimer()
 })
 
-set.addEventListener('click', function() {
-
+setT.addEventListener('click', function() {
+    hours = Number(document.querySelector('#hours').value)
+    minutes = Number(document.querySelector('#minutes').value)
+    seconds = Number(document.querySelector('#seconds').value)
     convertTime()
     formatText()
 
