@@ -1,8 +1,6 @@
-:root {
-    --bg-color: #121214;
-    --primary-color: rgb(56, 144, 39);
-    --text-color: #FFFFFF;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 h1{
     font-family: 'Inter', sans-serif;
@@ -24,18 +22,10 @@ body{
 }
 
 span, a {
-    color: rgb(56, 144, 39);
     text-align: center;
 }
 
 p{
-    color: #7D7987;
-    text-align: center;
-}
-
-.fren{
-    max-width: 50%;
-    height: auto;
     text-align: center;
 }
 

@@ -5,11 +5,16 @@ const set = document.querySelector('.set')
 const minutesDisplay = document.querySelector('.minutes')
 const hoursDisplay = document.querySelector('.hours')
 const secondsDisplay = document.querySelector('.seconds')
+stopT.style.display = 'none'
+set.style.display = 'block'
+pause.style.display = 'none'
+play.style.display = 'block'
 let timerTimeOut
 let seconds = 0
 let minutes = 0
 let hours = 0
-function convertTime(){
+
+function convertTime() {
     if (seconds >= 60) {
         minutes += Math.floor(seconds / 60)
         seconds = seconds % 60
@@ -20,75 +25,81 @@ function convertTime(){
     }
 }
 
-function resetTimer(){
+function resetTimer() {
     formatText()
     clearTimeout(timerTimeOut)
+    hoursDisplay.textContent = String(0).padStart(2, "0")
+    minutesDisplay.textContent = String(25).padStart(2, "0")
+    secondsDisplay.textContent = String(0).padStart(2, "0")
 }
 
-function resetControls(){
-    stopT.classList.add('hide')
-    set.classList.remove('hide')
-    pause.classList.add('hide')
-    play.classList.remove('hide')
+function resetControls() {
+    stopT.style.display = 'none'
+    set.style.display = 'block'
+    pause.style.display = 'none'
+    play.style.display = 'block'
 }
 
-function formatText(){
+function formatText() {
 
     hoursDisplay.textContent = String(hours).padStart(2, "0")
     minutesDisplay.textContent = String(minutes).padStart(2, "0")
     secondsDisplay.textContent = String(seconds).padStart(2, "0")
 
-
 }
-function timer(){
-    setTimeout(function() {
-        let seconds = Number(secondsDisplay.textContent)
-        let minutes = Number(minutesDisplay.textContent)
-        let hours = Number(hoursDisplay.textContent)
+
+function timer() {
+    timerTimeOut = setTimeout(function() {
+        seconds = Number(secondsDisplay.textContent)
+        minutes = Number(minutesDisplay.textContent)
+        hours = Number(hoursDisplay.textContent)
         
-        if(minutes == 0 ){
-            if(hours == 0 && seconds == 0 ){
-                return 
-                }
-            if(seconds <= 0 && hours != 0){
-                hoursDisplay.textContent = String(hours > 0 ? hours - 1 : hours).padStart(2, "0")
-                minutes = 60
-            }
+        if (seconds == 0 && minutes == 0 && hours == 0) {
+            resetControls();
+            return;
         }
-        if(seconds <= 0) {
-            seconds = 60
-            minutesDisplay.textContent = String(minutes > 0 ? minutes - 1: 0).padStart(2, "0")
+        if (seconds === 0 && minutes !== 0) {
+            minutes--;
+            seconds = 60;
+            minutesDisplay.textContent = String(minutes).padStart(2, "0");
+        } else if (seconds === 0 && minutes === 0 && hours !== 0) {
+            hours--;
+            minutes = 60;
+            seconds = 60;
+            hoursDisplay.textContent = String(hours).padStart(2, "0");
+            minutesDisplay.textContent = String(minutes - 1).padStart(2, "0");
         }
         
+
         secondsDisplay.textContent = String(seconds - 1).padStart(2, "0")
-        
+
         timer()
-        
+
     }, 1000);
+
 }
 
-play.addEventListener('click', function(){
-    play.classList.add('hide')
-    pause.classList.remove('hide')
-    set.classList.add('hide')
-    stopT.classList.remove('hide')  
+play.addEventListener('click', function() {
+    play.style.display = 'none'
+    pause.style.display = 'block'
+    set.style.display = 'none'
+    stopT.style.display = 'block'
     timer()
 })
-pause.addEventListener('click', function(){
-    pause.classList.add('hide')
-    play.classList.remove('hide')
+pause.addEventListener('click', function() {
+    pause.style.display = 'none'
+    play.style.display = 'block'
+    clearTimeout(timerTimeOut)
 })
 
-stopT.addEventListener('click', function(){
-resetControls()
-resetTimer()
+stopT.addEventListener('click', function() {
+    resetControls()
+    resetTimer()
 })
 
-set.addEventListener('click', function(){
-    hours = Number(prompt('Quantas horas?'))
-    minutes = Number(prompt('Quantos minutos?'))
-    seconds = Number(prompt('Quantos segundos?'))
+set.addEventListener('click', function() {
+
     convertTime()
     formatText()
-    
+
 })
