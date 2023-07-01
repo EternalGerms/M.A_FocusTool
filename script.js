@@ -76,7 +76,6 @@ function timer() {
             if (HasSound()) {
                 audio.play();
             }
-            console.log(HasSound())
             resetControls();
             return;
             
@@ -104,7 +103,6 @@ function timer() {
 }
 
 play.addEventListener('click', function() {
-    console.log(HasSound())
     play.style.display = 'none'
     pause.style.display = 'block'
     set.style.display = 'none'
@@ -112,7 +110,6 @@ play.addEventListener('click', function() {
     timer()
 })
 pause.addEventListener('click', function() {
-    console.log(HasSound())
     pause.style.display = 'none'
     play.style.display = 'block'
     clearTimeout(timerTimeOut)
