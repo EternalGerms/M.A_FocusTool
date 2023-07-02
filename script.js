@@ -31,7 +31,9 @@ checkremove.addEventListener('click', function() {
 })
 
 addButton.addEventListener('click', function() {
-    let 
+    let thetask = document.createElement("li");
+    thetask.classList.add("todo");
+    thetask.appendChild(document.createElement("input"))
 })
 
 checkbox.addEventListener( 'change', function() {
