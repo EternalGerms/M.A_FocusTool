@@ -18,6 +18,30 @@ let seconds = 0
 let minutes = 0
 let hours = 0
 
+let checkbox = document.querySelector(".taskcheck");
+let checkname = document.querySelector(".checkname");
+let checkremove = document.querySelector(".remover");
+let todo = document.querySelector(".todo");
+let todolist = document.querySelector(".list");
+let addButton = document.querySelector(".addbutton");
+let taskName = document.querySelector(".taskname");
+
+checkremove.addEventListener('click', function() {
+    todo.remove();
+})
+
+addButton.addEventListener('click', function() {
+    let 
+})
+
+checkbox.addEventListener( 'change', function() {
+    if(this.checked) {
+        checkname.classList.add("line-through");
+    } else {
+        checkname.classList.remove("line-through");
+    }
+});
+
 alarmI.addEventListener('click', function() {
     alarm.classList.toggle('fa-volume-xmark')
 })
