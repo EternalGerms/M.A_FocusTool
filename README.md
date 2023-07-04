@@ -14,4 +14,4 @@ Ferramenta de produtividade que permite organizar e monitorar tempo e atividades
  - [ ] Salvar dados (tasks) localmente
 
 ## Preview
-![](eternalgerms.github.io/M.A_FocusTool/)
+eternalgerms.github.io/M.A_FocusTool/
