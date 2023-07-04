@@ -18,31 +18,50 @@ let seconds = 0
 let minutes = 0
 let hours = 0
 
-let checkbox = document.querySelector(".taskcheck");
-let checkname = document.querySelector(".checkname");
-let checkremove = document.querySelector(".remover");
-let todo = document.querySelector(".todo");
-let todolist = document.querySelector(".list");
-let addButton = document.querySelector(".addbutton");
-let taskName = document.querySelector(".taskname");
+let List = document.querySelector(".list");
+let addTask = document.querySelector(".addbutton")
+let inputTask = document.querySelector(".taskname")
+let item = document.querySelector('.todo')
 
-checkremove.addEventListener('click', function() {
-    todo.remove();
-})
+addTask.addEventListener('click', creating);
 
-addButton.addEventListener('click', function() {
-    let thetask = document.createElement("li");
-    thetask.classList.add("todo");
-    thetask.appendChild(document.createElement("input"))
-})
+function creating() {
+if (inputTask.value == '') {
+    alert("Insira um nome válido!")
+} else {
+    let newTask = document.createElement('li');
+    newTask.classList.add("todo", "my-2");
 
-checkbox.addEventListener( 'change', function() {
-    if(this.checked) {
-        checkname.classList.add("line-through");
-    } else {
-        checkname.classList.remove("line-through");
-    }
-});
+    let newCheckbox = document.createElement('input');
+    newCheckbox.type = 'checkbox';
+    newCheckbox.classList.add('checkbox', 'align-middle', 'checkbox-primary', 'taskcheck')
+    newTask.appendChild(newCheckbox);
+
+    let newTaskname = document.createElement('span');
+    newTaskname.innerHTML = inputTask.value;
+    newTaskname.classList.add('label-text', 'align-middle', 'ml-3', 'checkname')
+    newTask.appendChild(newTaskname);
+
+    let newRemovebutton = document.createElement('button');
+    newRemovebutton.classList.add('btn', 'btn-link', 'btn-error', 'btn-xs', 'remover');
+
+    let newRemoveicon = document.createElement('i');
+    newRemoveicon.classList.add('fa-solid', 'fa-xmark', 'mx-auto');
+    newRemovebutton.appendChild(newRemoveicon)
+    newTask.appendChild(newRemovebutton)
+
+    List.appendChild(newTask);
+    inputTask.value = '';
+
+    newRemovebutton.addEventListener('click', function() {
+        List.removeChild(newTask);
+    })
+
+    newCheckbox.addEventListener('change', function() {
+        newTaskname.classList.toggle('line-through');
+    })
+}
+}
 
 alarmI.addEventListener('click', function() {
     alarm.classList.toggle('fa-volume-xmark')
@@ -51,8 +70,7 @@ alarmI.addEventListener('click', function() {
 function HasSound() {
     if (alarm.classList.contains('fa-volume-xmark')) {
         return false;
-    }
-    else {
+    } else {
         return true;
     }
 }
@@ -97,15 +115,15 @@ function timer() {
         seconds = Number(secondsDisplay.textContent)
         minutes = Number(minutesDisplay.textContent)
         hours = Number(hoursDisplay.textContent)
-        
+
         if (seconds == 0 && minutes == 0 && hours == 0) {
             if (HasSound()) {
                 audio.play();
             }
             resetControls();
             return;
-            
-            
+
+
         }
         if (seconds === 0 && minutes !== 0) {
             minutes--;
@@ -118,7 +136,7 @@ function timer() {
             hoursDisplay.textContent = String(hours).padStart(2, "0");
             minutesDisplay.textContent = String(minutes - 1).padStart(2, "0");
         }
-        
+
 
         secondsDisplay.textContent = String(seconds - 1).padStart(2, "0")
 
@@ -154,4 +172,3 @@ setT.addEventListener('click', function() {
     formatText()
 
 })
-
