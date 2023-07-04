@@ -18,6 +18,8 @@ let seconds = 0
 let minutes = 0
 let hours = 0
 
+// Tasklist System
+
 let List = document.querySelector(".list");
 let addTask = document.querySelector(".addbutton")
 let inputTask = document.querySelector(".taskname")
@@ -62,7 +64,7 @@ addTask.addEventListener('click', function () {
     });
 
 
-
+// Alarm system
 alarmI.addEventListener('click', function() {
     alarm.classList.toggle('fa-volume-xmark')
 })
@@ -75,6 +77,7 @@ function HasSound() {
     }
 }
 
+// Timer system
 
 function convertTime() {
     if (seconds >= 60) {
