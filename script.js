@@ -78,7 +78,6 @@ function HasSound() {
 }
 
 // Timer system
-
 function convertTime() {
     if (seconds >= 60) {
         minutes += Math.floor(seconds / 60)
