@@ -12,3 +12,6 @@ Ferramenta de produtividade que permite organizar e monitorar tempo e atividades
  - [x] ~~Tasklist~~
  - [ ] Tasklist integrada ao timer
  - [ ] Salvar dados (tasks) localmente
+
+## Preview
+![](eternalgerms.github.io/M.A_FocusTool/)
