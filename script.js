@@ -23,45 +23,45 @@ let addTask = document.querySelector(".addbutton")
 let inputTask = document.querySelector(".taskname")
 let item = document.querySelector('.todo')
 
-addTask.addEventListener('click', creating);
+addTask.addEventListener('click', function () {
+    if (inputTask.value == '') {
+        alert("Insira um nome válido!")
+    } else {
+        let newTask = document.createElement('li');
+        newTask.classList.add("todo", "my-2");
+    
+        let newCheckbox = document.createElement('input');
+        newCheckbox.type = 'checkbox';
+        newCheckbox.classList.add('checkbox', 'align-middle', 'checkbox-primary', 'taskcheck')
+        newTask.appendChild(newCheckbox);
+    
+        let newTaskname = document.createElement('span');
+        newTaskname.innerHTML = inputTask.value;
+        newTaskname.classList.add('label-text', 'align-middle', 'ml-3', 'checkname')
+        newTask.appendChild(newTaskname);
+    
+        let newRemovebutton = document.createElement('button');
+        newRemovebutton.classList.add('btn', 'btn-link', 'btn-error', 'btn-xs', 'remover');
+    
+        let newRemoveicon = document.createElement('i');
+        newRemoveicon.classList.add('fa-solid', 'fa-xmark', 'mx-auto');
+        newRemovebutton.appendChild(newRemoveicon)
+        newTask.appendChild(newRemovebutton)
+    
+        List.appendChild(newTask);
+        inputTask.value = '';
+    
+        newRemovebutton.addEventListener('click', function() {
+            List.removeChild(newTask);
+        })
+    
+        newCheckbox.addEventListener('change', function() {
+            newTaskname.classList.toggle('line-through');
+        })
+    }
+    });
 
-function creating() {
-if (inputTask.value == '') {
-    alert("Insira um nome válido!")
-} else {
-    let newTask = document.createElement('li');
-    newTask.classList.add("todo", "my-2");
 
-    let newCheckbox = document.createElement('input');
-    newCheckbox.type = 'checkbox';
-    newCheckbox.classList.add('checkbox', 'align-middle', 'checkbox-primary', 'taskcheck')
-    newTask.appendChild(newCheckbox);
-
-    let newTaskname = document.createElement('span');
-    newTaskname.innerHTML = inputTask.value;
-    newTaskname.classList.add('label-text', 'align-middle', 'ml-3', 'checkname')
-    newTask.appendChild(newTaskname);
-
-    let newRemovebutton = document.createElement('button');
-    newRemovebutton.classList.add('btn', 'btn-link', 'btn-error', 'btn-xs', 'remover');
-
-    let newRemoveicon = document.createElement('i');
-    newRemoveicon.classList.add('fa-solid', 'fa-xmark', 'mx-auto');
-    newRemovebutton.appendChild(newRemoveicon)
-    newTask.appendChild(newRemovebutton)
-
-    List.appendChild(newTask);
-    inputTask.value = '';
-
-    newRemovebutton.addEventListener('click', function() {
-        List.removeChild(newTask);
-    })
-
-    newCheckbox.addEventListener('change', function() {
-        newTaskname.classList.toggle('line-through');
-    })
-}
-}
 
 alarmI.addEventListener('click', function() {
     alarm.classList.toggle('fa-volume-xmark')
