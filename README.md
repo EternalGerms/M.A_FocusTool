@@ -11,6 +11,7 @@ Ferramenta de produtividade que permite organizar e monitorar tempo e atividades
  - [x] ~~Alarme~~
  - [x] ~~Tasklist~~
  - [ ] Tasklist integrada ao timer
+ - [ ] Notificações para o usuário
  - [ ] Salvar dados (tasks) localmente
 
 ## Preview
