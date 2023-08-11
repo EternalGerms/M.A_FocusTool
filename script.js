@@ -17,7 +17,7 @@ let timerTimeOut
 let seconds = 0
 let minutes = 0
 let hours = 0
-
+Notification.requestPermission()
 // Tasklist System
 
 let List = document.querySelector(".list");
@@ -123,6 +123,7 @@ function timer() {
                 audio.play();
             }
             resetControls();
+            new Notification("Timer finalizado!");
             return;
 
 
